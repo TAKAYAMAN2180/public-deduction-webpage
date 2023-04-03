@@ -1,10 +1,7 @@
 import styled from "styled-components"
 
-interface StyledHrProps {
-    word: string;
-}
 
-const StyledHr = styled.hr<StyledHrProps>`
+const StyledHr = styled.hr`
   line-height: 1em;
   position: relative;
   outline: 0;
