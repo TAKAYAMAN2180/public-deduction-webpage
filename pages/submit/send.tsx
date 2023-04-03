@@ -38,7 +38,7 @@ const SendInfo: FC = () => {
         } else {
             router.push("/");
         }
-    }, []);
+    }, [router]);
 
     const handleIconClick = (event: MouseEvent<HTMLButtonElement | MouseEvent>) => {
         event.preventDefault();

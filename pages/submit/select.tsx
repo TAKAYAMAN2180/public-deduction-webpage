@@ -52,7 +52,7 @@ const SimpleTable: FC = () => {
         if (router.query.identifier == "") {
             router.push("/");
         }
-    }, [])
+    }, [router])
 
 
     const createSortHandler = (property: keyof Deduction) => (

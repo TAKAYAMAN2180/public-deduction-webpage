@@ -50,7 +50,7 @@ function DeductionPane({deductionsInfo}: PropsType): JSX.Element {
 
             setFormattedDate(formattedDate);
         }
-        , [])
+        , [deductionsInfo])
 
     return (
         <Box sx={{borderBottom: "1px dashed #7E8080", textAlign : "center"}}>
