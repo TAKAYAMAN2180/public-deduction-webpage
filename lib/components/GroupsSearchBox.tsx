@@ -40,7 +40,7 @@ function reformat(arg: InputItem[]): GroupsData {
 function GroupsSearchBox({dataSetter}: PropsType): JSX.Element {
 
     return (
-        <SearchBox targetSetter={dataSetter} reformatFunc={reformat} initData={groupsInitData} searchIndex={process.env.NEXT_PUBLIC_ALGOLIA_GROUPS_INDEX_NAME}/>
+        <SearchBox targetSetter={dataSetter} reformatFunc={reformat} initData={groupsInitData} searchIndex={"test_index"}/>
     );
 
 }

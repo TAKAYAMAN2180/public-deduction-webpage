@@ -39,7 +39,7 @@ function reformat(arg: InputItem[]): Deduction[] {
 function DeductionsSearchBox({dataSetter}: PropsType): JSX.Element {
 
     return (
-        <SearchBox targetSetter={dataSetter} reformatFunc={reformat} initData={deductionsInitInfoData} searchIndex={process.env.NEXT_PUBLIC_ALGOLIA_DEDUCTIONS_INDEX_NAME}/>
+        <SearchBox targetSetter={dataSetter} reformatFunc={reformat} initData={deductionsInitInfoData} searchIndex={"deductions_index"}/>
     );
 
 }
