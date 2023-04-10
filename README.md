@@ -9,7 +9,7 @@ This repo is not including API Keys is hide. So, you need own API Keys and Accou
 
 # ABOUT Next.js
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
+c
 ## Getting Started
 
 First, run the development server:
