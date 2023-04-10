@@ -1,3 +1,11 @@
+# ABOUT THIS APPLICATION
+## Overview
+The purpose of this system is to manage deductions for each groups in my school festival.  
+If you want to know more about this app, please see [the site(NOW Making...)]()  
+[https://(NOW Making...)]()
+
+
+# ABOUT Next.js
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
