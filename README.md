@@ -1,6 +1,6 @@
 # ABOUT THIS APPLICATION
 ## Overview
-The purpose of this system is to manage deductions for each groups in my school festival.  
+The purpose of this application is to manage deductions for each groups in my school festival.  
 If you want to know more about this app, please see [the site(NOW Making...)]()  
 [https://(NOW Making...)]()
 
