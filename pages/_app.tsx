@@ -8,7 +8,6 @@ import createEmotionCache from "../lib/createEmotionCache";
 import theme from "../lib/theme";
 import {CssBaseline} from "@mui/material";
 import {DevSupport} from "@react-buddy/ide-toolbox-next";
-import {ComponentPreviews, useInitial} from "../components/dev";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -25,11 +24,7 @@ function MyApp(props: MyAppProps) {
             </Head>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
-                    <DevSupport ComponentPreviews={ComponentPreviews}
-                                useInitialHook={useInitial}
-                    >
-                        <Component {...pageProps} />
-                    </DevSupport>
+                <Component {...pageProps} />
             </ThemeProvider>
         </CacheProvider>
     )

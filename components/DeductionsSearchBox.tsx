@@ -1,20 +1,10 @@
-import {
-    FC,
-    FormEvent,
-    useRef,
-    KeyboardEvent,
-    MouseEvent,
-    Dispatch,
-    SetStateAction,
-    ReactElement,
-    useState
-} from "react";
-import deductionsInitInfoData from "../source/deductionsInfoData.json"
+import {Dispatch, SetStateAction} from "react";
+import deductionsInitInfoData from "../lib/source/deductionsInfoData.json"
 import SearchBox from "./SearchBox";
-import {Deduction} from "../types/firebase/Deduction";
+import {Deduction} from "../lib/types/firebase/Deduction";
 
 
-type PropsType = { dataSetter: Dispatch<SetStateAction<any>> };
+type PropsType = { dataSetter: Dispatch<SetStateAction<Deduction[]>> };
 
 interface InputItem {
     index: number;
@@ -39,7 +29,8 @@ function reformat(arg: InputItem[]): Deduction[] {
 function DeductionsSearchBox({dataSetter}: PropsType): JSX.Element {
 
     return (
-        <SearchBox targetSetter={dataSetter} reformatFunc={reformat} initData={deductionsInitInfoData} searchIndex={"deductions_index"}/>
+        <SearchBox targetSetter={dataSetter} reformatFunc={reformat} initData={deductionsInitInfoData}
+                   searchIndex={process.env.NEXT_PUBLIC_ALGOLIA_DEDUCTIONS_INDEX_NAME}/>
     );
 
 }

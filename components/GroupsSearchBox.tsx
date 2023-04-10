@@ -1,16 +1,9 @@
 import {
-    FC,
-    FormEvent,
-    useRef,
-    KeyboardEvent,
-    MouseEvent,
     Dispatch,
     SetStateAction,
-    ReactElement,
-    useState
 } from "react";
-import groupsInitData from "../source/groupsInfoData.json"
-import {GroupsData} from "../types/GroupsData";
+import groupsInitData from "../lib/source/groupsInfoData.json"
+import {GroupsData} from "../lib/types/GroupsData";
 import SearchBox from "./SearchBox";
 
 
@@ -40,7 +33,8 @@ function reformat(arg: InputItem[]): GroupsData {
 function GroupsSearchBox({dataSetter}: PropsType): JSX.Element {
 
     return (
-        <SearchBox targetSetter={dataSetter} reformatFunc={reformat} initData={groupsInitData} searchIndex={"test_index"}/>
+        <SearchBox targetSetter={dataSetter} reformatFunc={reformat} initData={groupsInitData}
+                   searchIndex={process.env.NEXT_PUBLIC_ALGOLIA_GROUPS_INDEX_NAME}/>
     );
 
 }

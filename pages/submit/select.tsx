@@ -1,50 +1,29 @@
+import {
+    AppBar,
+    Box,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TableSortLabel,
+    Toolbar,
+    Typography,
+    IconButton
+} from '@mui/material';
 import deductionsInitData from "../../lib/source/deductionsInfoData.json"
-import React, {FC, useEffect, useRef} from "react";
-import {useState} from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import TableSortLabel from "@mui/material/TableSortLabel";
+import React, {FC, MouseEvent, useEffect, useState} from "react";
 import {useRouter} from "next/router";
-import {number} from "prop-types";
-import {AppBar, Toolbar, Typography} from '@mui/material';
-import SearchBoxForDeductions from "../../lib/components/DeductionsSearchBox";
-import {fontSize} from "@mui/system";
+import SearchBoxForDeductions from "../../components/DeductionsSearchBox";
 import {Deduction} from "../../lib/types/firebase/Deduction";
-import Box from "@mui/material/Box";
-import Link from "next/link";
-
-/*このとき、Tは暗黙的に推論される*/
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-type Order = "asc" | "desc";
-
-function getComparator<Key extends keyof any>(
-    order: Order,
-    orderBy: Key
-): (
-    a: { [key in Key]: number | string },
-    b: { [key in Key]: number | string }
-) => number {
-    return order === "desc"
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
+import {ArrowBack} from "@mui/icons-material";
+import TopicPathBox, {TopicPathHome, TopicPathSub} from "../../components/TopicPath";
+import {getComparator, Order} from "../../lib/sortUtil";
 
 
 const SimpleTable: FC = () => {
-    const [order, setOrder] = useState<Order>("asc");
+    const [order, setOrder] = useState<Order>(Order.ASC);
     const [deductionsData, setDeductionsData] = useState<Deduction[]>(deductionsInitData);
     const router = useRouter();
 
@@ -55,10 +34,8 @@ const SimpleTable: FC = () => {
     }, [router])
 
 
-    const createSortHandler = (property: keyof Deduction) => (
-        event: React.MouseEvent<unknown>
-    ) => {
-        setOrder(order === "asc" ? "desc" : "asc");
+    const createSortHandler = () => {
+        setOrder(order == Order.ASC ? Order.DESC : Order.ASC);
     };
 
     const handleRowClick = (deductionIndex: number) => {
@@ -68,10 +45,19 @@ const SimpleTable: FC = () => {
         })
     }
 
+    const handleIconClick = (event: MouseEvent<HTMLButtonElement | MouseEvent>) => {
+        event.preventDefault();
+        router.push("/group/" + router.query.identifier);
+
+    }
+
     return (
         <div>
             <AppBar position="sticky" sx={{padding: 1}}>
                 <Toolbar>
+                    <IconButton onClick={handleIconClick}>
+                        <ArrowBack sx={{color: "white"}}/>
+                    </IconButton>
                     <Typography variant="h6" sx={{
                         fontSize: "25px",
                         "@media screen and (max-width:450px)": {
@@ -82,7 +68,11 @@ const SimpleTable: FC = () => {
                     <SearchBoxForDeductions dataSetter={setDeductionsData}/>
                 </Toolbar>
             </AppBar>
-            <Link href={"/"}>← 団体一覧へ戻る</Link>
+            <TopicPathBox>
+                <TopicPathSub href={"/"}>団体一覧</TopicPathSub>
+                <TopicPathSub href={"/group/" + router.query.identifier}>団体情報</TopicPathSub>
+                <TopicPathHome>項目一覧</TopicPathHome>
+            </TopicPathBox>
             <Box m={2}>①該当する減点項目を選択してください</Box>
             <TableContainer>
                 <Table>
@@ -93,7 +83,7 @@ const SimpleTable: FC = () => {
                                     sx={{padding: 0, fontSize: "12px", width: "6rem", textAlign: "center"}}
                                     active
                                     direction={order}
-                                    onClick={createSortHandler("points")}
+                                    onClick={createSortHandler}
                                 >
                                     減点数
                                 </TableSortLabel>
@@ -110,7 +100,9 @@ const SimpleTable: FC = () => {
                     <TableBody>
                         {deductionsData.sort(getComparator(order, "points")).map((deduction, index) => {
                             return (
-                                <TableRow key={index} onClick={()=>{handleRowClick(deduction.index)}}>
+                                <TableRow key={index} onClick={() => {
+                                    handleRowClick(deduction.index)
+                                }}>
                                     <TableCell sx={{textAlign: "center"}}>{deduction.points}</TableCell>
                                     <TableCell
                                         sx={{textAlign: "center"}}>{deduction.index}</TableCell>

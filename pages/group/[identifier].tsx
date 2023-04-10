@@ -4,20 +4,18 @@ import {useRouter} from 'next/router';
 import groupsInfoData from "../../lib/source/groupsInfoData.json";
 import {ParsedUrlQuery} from "querystring";
 import React, {MouseEvent, useEffect, useState} from "react";
-import {db} from "../../lib/firebase/firebaseConfig";
-import firebase from "firebase/compat";
 import {getDeductionPoint, getDeductionInfo} from "../../lib/firebase/getterFirestore"
 
-import {DocumentData, DocumentSnapshot} from "@firebase/firestore";
 import {DeductionsInfo} from "../../lib/types/firebase/DeductionsInfo";
 import deductionsInfoData from "../../lib/source/deductionsInfoData.json"
 import Grid from "@mui/material/Grid";
 import {AppBar, Button, IconButton, Toolbar, Typography} from "@mui/material";
-import SearchBoxForGroups from "../../lib/components/GroupsSearchBox";
 import {ArrowBack} from "@mui/icons-material";
 import styled from "styled-components"
-import DeductionPane from "../../lib/components/DeductionPane";
+import DeductionPane from "../../components/DeductionPane";
 import Box from "@mui/material/Box";
+import Link from "next/link";
+import TopicPathBox, {TopicPathSub, TopicPathHome} from "../../components/TopicPath";
 
 const StyledSample = styled.div`
   display: flex;
@@ -113,11 +111,14 @@ const Post: NextPage<PostProps> = (props) => {
                         }}>各団体の情報</Typography>
                     </Toolbar>
                 </AppBar>
+                <TopicPathBox>
+                    <TopicPathSub href={"/"}>{"団体一覧"}</TopicPathSub>
+                    <TopicPathHome>{"団体の情報"}</TopicPathHome>
+                </TopicPathBox>
                 <Grid container alignItems={'center'} justifyContent={'center'} direction={"column"} mt={2}>
                     <Grid item xs={12}>{`区画：${group?.areaNum}番, 受付：${group?.applyNum}番`}</Grid>
                     <Grid item xs={12}>{group?.groupName}</Grid>
                     <Grid item xs={12} sx={{fontSize: "112px"}}>{deductionPoint}</Grid>
-                    {/*<Grid item xs={12}>{`/posts/${identifier}に対応するページです`}</Grid>*/}
                     <Grid item xs={12}>
                         <Grid container alignItems="center" justifyContent="center">
                             <StyledSample>
@@ -127,7 +128,7 @@ const Post: NextPage<PostProps> = (props) => {
                             </StyledSample>
                         </Grid>
                     </Grid>
-                    <Grid item xs={12}>{(details == null||details=="") ? <Box mt={2}>特記事項なし</Box> :
+                    <Grid item xs={12}>{(details == null || details == "") ? <Box mt={2}>特記事項なし</Box> :
                         <Box mt={2}>{details}</Box>}</Grid>
                     <Grid item xs={12}>
                         <Grid container alignItems="center" justifyContent="center" mt={2}>

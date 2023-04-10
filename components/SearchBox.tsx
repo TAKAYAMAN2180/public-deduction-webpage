@@ -1,19 +1,14 @@
 import {
-    FC,
-    FormEvent,
-    useRef,
     KeyboardEvent,
     MouseEvent,
     Dispatch,
     SetStateAction,
-    ReactElement,
     useState
 } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
-import {Button, InputAdornment, Box} from "@mui/material";
-import groupsInitData from "../source/groupsInfoData.json";
-import search from "../search";
+import {Button, useMediaQuery , Box} from "@mui/material";
+import search from "../lib/search";
 
 type PropsType = {
     targetSetter: Dispatch<SetStateAction<any>>;
@@ -26,7 +21,7 @@ function SearchBox({targetSetter, reformatFunc, initData, searchIndex}: PropsTyp
     const [field, setField] = useState<string>("");
     const [prefield, setPreField] = useState<string>("");
     const [composition, setComposition] = useState<boolean>(false);
-
+    const isSmallScreen = useMediaQuery("(max-width:450px)");
 
     const keyDown = (e: KeyboardEvent<HTMLElement>) => {
         if (!composition && e.code === "Enter") {
@@ -72,10 +67,10 @@ function SearchBox({targetSetter, reformatFunc, initData, searchIndex}: PropsTyp
                            variant="filled"/>
                 <Button variant={"contained"}
                         sx={{margin: 0, boxShadow: 1, borderRadius: 0}}
-                        endIcon={<SearchIcon/>}
+                        endIcon={<SearchIcon　/>}
                         onClick={handleClick}
                 >
-                    Search
+                    {isSmallScreen ? "" : "Search"}
                 </Button>
             </Box>
         </div>

@@ -4,9 +4,9 @@ const theme = createTheme({
     // TODO:テーマ設定を行います
     palette:{
         primary:{
-            main: '#d87274',
-            light: '#ffa2a3',
-            dark: '#a34449'
+            main: '#0067c0',
+            light: '#54D4FF',
+            dark: '#000099'
         }
     }
 });

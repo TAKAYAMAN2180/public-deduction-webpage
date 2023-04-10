@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box";
 import React, {FC, useEffect, useState} from "react";
-import {DeductionsInfo} from "../types/firebase/DeductionsInfo";
-import {Deduction} from "../types/firebase/Deduction";
-import deductionsInfoData from "../../lib/source/deductionsInfoData.json"
+import {DeductionsInfo} from "../lib/types/firebase/DeductionsInfo";
+import {Deduction} from "../lib/types/firebase/Deduction";
+import deductionsInfoData from "../lib/source/deductionsInfoData.json"
 
 type PropsType = { deductionsInfo: DeductionsInfo };
 type ResultType = "減点" | "注意" | "審査中" | "取消" | "間違";
