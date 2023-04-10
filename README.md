@@ -4,6 +4,8 @@ The purpose of this application is to manage deductions for each groups in my sc
 If you want to know more about this app, please see [the site(NOW Making...)]()  
 [https://(NOW Making...)]()
 
+## Attention
+This repo is not including API Keys is hide. So, you need own API Keys and Accounts.
 
 # ABOUT Next.js
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
