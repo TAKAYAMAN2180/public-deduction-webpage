@@ -1,11 +1,11 @@
 # ABOUT THIS APPLICATION
 ## Overview
 The purpose of this application is to manage deductions for each groups in my school festival.  
-If you want to know more about this app, please see [the site(NOW Making...)]()  
-[https://(NOW Making...)]()
+If you want to know more about this app, please see [the site](https://qiita.com/TAKAYAMAN2180/items/fe58a79ad3ec22432448)  
+[https://qiita.com/TAKAYAMAN2180/items/fe58a79ad3ec22432448](https://qiita.com/TAKAYAMAN2180/items/fe58a79ad3ec22432448)
 
 ## Attention
-This repo is not including API Keys is hide. So, you need own API Keys and Accounts.
+This repo is not including API Keys and groups data. So, you need own API Keys, data and Accounts.
 
 # ABOUT Next.js
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
